@@ -1,0 +1,50 @@
+<% include partials/header %>
+<br>
+
+<div class="container">
+     <div class="hero"></div>
+</div>
+
+<div class="container">
+     <div class="row">
+     <% data["productList"].forEach(function(productList){%>
+		<div class="col-lg-3 col-md-6 col-sm-12">
+		     <div class="thumbnail">
+		             <img class="img-responsive" src="<%= productList["imageUrls"]["sm"] %>">
+     			  <div id="name">
+     			         <p><span> <%= productList["brand"] %> <%= productList["description"] %></span></p>
+     			  </div>
+     			  <div id="price">
+     			       <!--<span>Product Id: <%= productList["productId"] %></span>-->
+     			       <p>$<%= productList["networkPrice"] %>0</p>
+     			  </div>
+     			  <div>
+     			         <button class="btn btn-default btn-lg" id="view-more">View More</button>
+     			  </div>
+
+	           </div>
+          </div>
+     <% }); %>
+     </div>
+</div>
+
+
+<script>
+     $(".thumbnail").on('click',function(){
+          var clone = $(this).clone();
+               $(".hero").html(clone);
+               $(".hero").append(
+                    //'<p class="price-hero"></p>'
+                    '<button class="btn btn-lg btn-success" id="addToCart">Add To Cart</button>'
+                    );
+               $("#view-more").remove();
+     
+         // $("#addToCart").on('click', function(){
+             //$("").append('');
+          //});
+     });
+     
+     
+</script>
+
+<% include partials/footer %>
